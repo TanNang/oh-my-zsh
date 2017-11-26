@@ -1,159 +1,165 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH=/root/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# 主题配置
 ZSH_THEME="ys"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-HIST_STAMPS="yyyy-mm-dd"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# 插件配置
 plugins=(git z wd extract colored-man-pages zsh-syntax-highlighting)
+# git                       最常用插件，git 相关
+# z                         按照使用频率排序曾经进过的目录，进行模糊匹配
+# wd                        通过设置 tag，快速切换目录
+# extract                   'x'命令，支持自动识别压缩格式并将其解压
+# colored-man-pages         'man'帮助文档页面开启高亮显示
+# zsh-syntax-highlighting   oh-my-zsh 命令行语法高亮插件
 
+# 历史记录
+HIST_STAMPS="yyyy-mm-dd"        # 时间戳 "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+export HISTSIZE=100000          # 保存 100000 条记录
+export HISTCONTROL=ignoredups   # 不记录重复的命令
+
+# 其他配置
+# CASE_SENSITIVE="true"         # 命令补全区分大小写，默认不区分
+HYPHEN_INSENSITIVE="true"       # 命令补全不区分'_'、`-`，建议启用
+DISABLE_AUTO_UPDATE="true"      # 不进行自动更新检查（每两个星期）
+# export UPDATE_ZSH_DAYS=13     # 修改自动更新检查的周期，单位为天
+# DISABLE_LS_COLORS="true"      # 禁用 ls 命令显示颜色
+# DISABLE_AUTO_TITLE="true"     # 禁用 oh-my-zsh 自动设置终端标题
+# ENABLE_CORRECTION="true"      # 启用命令自动更正，不好用
+# COMPLETION_WAITING_DOTS="true"# 在等待命令补全时显示红点
+
+# 加载 oh-my-zsh.sh
+export ZSH=/root/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# function path，可使用 autoload 加载
+fpath=(/root/.zsh_func $fpath)
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# 修复键位冲突，如果没有此情况请注释掉！
 # key bindings
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[4~" end-of-line
 bindkey "\e[5~" beginning-of-history
 bindkey "\e[6~" end-of-history
-
 # for rxvt
 bindkey "\e[8~" end-of-line
 bindkey "\e[7~" beginning-of-line
-
 # for non RH/Debian xterm, can't hurt for RH/DEbian xterm
 bindkey "\eOH" beginning-of-line
 bindkey "\eOF" end-of-line
-
 # for freebsd console
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
-
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
-
-# Fix numeric keypad  
-# 0 . Enter  
+# Fix numeric keypad
+# 0 . Enter
 bindkey -s "^[Op" "0"
 bindkey -s "^[On" "."
 bindkey -s "^[OM" "^M"
-# 1 2 3  
+# 1 2 3
 bindkey -s "^[Oq" "1"
 bindkey -s "^[Or" "2"
 bindkey -s "^[Os" "3"
-# 4 5 6  
+# 4 5 6
 bindkey -s "^[Ot" "4"
 bindkey -s "^[Ou" "5"
 bindkey -s "^[Ov" "6"
-# 7 8 9  
+# 7 8 9
 bindkey -s "^[Ow" "7"
 bindkey -s "^[Ox" "8"
 bindkey -s "^[Oy" "9"
-# + - * /  
+# + - * /
 bindkey -s "^[Ol" "+"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
 
-DISABLE_UPDATE_PROMPT=true
-
+# xterm-256color
 if [[ $TERM == 'xterm' ]]; then
     export TERM=xterm-256color
 fi
 
-export http_proxy=http://127.0.0.1:8118
-export https_proxy=http://127.0.0.1:8118
-export no_proxy=localhost
-
-export HISTSIZE=10000
-export HISTCONTROL=ignoredups
-
+# 默认编辑器 vim
 export EDITOR=vim
 export SVNEDITOR=vim
+alias vi='vim'
 
-alias gcc='gcc -std=c99 -Wall -Wextra'
-alias g++='g++ -std=c++11 -Wall -Wextra'
+# autoload
+alias autoload='autoload -Uz'
+alias al='autoload'
+# src
+alias src='source'
+
+# zshedit | zshload
+alias zshedit='vim ~/.zshrc'
+alias zshload='source ~/.zshrc'
+# zshfuncedit
+function zshfuncedit() {
+    vim ~/.zsh_func/$1
+}
+
+# trash-cli
+alias rm='trash-put'
+alias rm.list='trash-list'
+alias rm.restore='trash-restore'
+alias rm.delete='trash-rm'
+alias rm.empty='trash-empty'
+
+# echo
+alias echo='echo -e'
+
+# curl
+alias curl='curl -s'
+
+# grep
+alias egrep='egrep --color'
+
+# diff
+alias diff='diff --color'
+
+# gcc/g++
+alias gcc='gcc -std=c11 -Wall -Wextra'
+alias g++='g++ -std=c++14 -Wall -Wextra'
+# gdb/cgdb
 alias gdb='gdb -q'
 alias cgdb='cgdb -q'
+# javac
+alias javac='javac -Xlint:all'
 
+# ps
+alias ps='ps -eo user,pid,ppid,lwp,nlwp,tty,%cpu,%mem,stat,cmd'
+# free
+alias free='free -h'
+# drop_cache
+alias drop_cache='sync && sleep 3 && echo 3 > /proc/sys/vm/drop_caches'
+
+# iptables
+alias ipts_show='iptables --line-numbers -nvL -t'
+alias ipts_clear='iptables -F -t raw && iptables -F -t mangle && iptables -F -t nat && iptables -F -t filter'
+
+# date_show
+alias date_show='date "+%A %F %T %Z"'
+# auto_service
+alias auto_service='systemctl list-unit-files -t service | grep enabled'
+# catconf
 alias catconf='egrep -v "^\s*$|^\s*#"'
-alias drop_cache='sync && sleep 2 && echo 3 > /proc/sys/vm/drop_caches'
-alias pp='ps -eo user,pid,ppid,lwp,nlwp,%cpu,%mem,stat,cmd'
+# catfunc
+alias catfunc='typeset -f'
+# catdns
+alias catdns='cat /etc/resolv.conf | egrep -v "^\s*$|^\s*#"'
+# vimdns
+alias vimdns='vim /etc/resolv.conf'
 
-alias rescan_disk_1='for i in `ls /sys/class/scsi_host/`; do echo "- - -" > /sys/class/scsi_host/$i/scan; done'
-alias rescan_disk_2='for i in `ls /sys/class/scsi_device/`; do echo "1" > /sys/class/scsi_device/$i/device/rescan; done'
-alias rescan_disk='rescan_disk_1 && rescan_disk_2'
+# getip
+function getip() {
+    local ip_info=$(curl -sL ip.chinaz.com/getip.aspx | sed -r "s/^\{ip:'(.*)',address:'(.*)'\}$/\1|\2/g")
+    local my_ip=$(echo ${ip_info} | awk -F'|' '{print $1}')
+    local my_loc=$(echo ${ip_info} | awk -F'|' '{print $2}')
+    echo -e "\e[37mIP:\e[0m ${my_ip}\t\e[37m位置:\e[0m ${my_loc}"
+}
+
+# http/https 代理
+proxy=http://192.168.0.103:1080
+export http_proxy=$proxy
+export https_proxy=$proxy
+export no_proxy="localhost, ip.cn, chinaz.com"
+# unset proxy
+alias unset_proxy='unset http_proxy https_proxy ftp_proxy no_proxy'
