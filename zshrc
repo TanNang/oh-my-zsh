@@ -110,10 +110,11 @@ alias echo='echo -e'
 alias curl='curl -s'
 
 # grep
+alias grep='grep -P --color'
 alias egrep='egrep --color'
 
 # diff
-alias diff='diff --color'
+alias diff='diff -u --color'
 
 # gcc/g++
 alias gcc='gcc -std=c11 -Wall -Wextra'

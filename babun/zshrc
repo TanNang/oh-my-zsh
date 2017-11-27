@@ -63,7 +63,11 @@ alias echo='echo -e'
 alias curl='curl -s'
 
 # grep
+alias grep='grep -P --color'
 alias egrep='egrep --color'
+
+# diff
+alias diff='diff -u'
 
 # ps
 alias ps='ps -ef'
