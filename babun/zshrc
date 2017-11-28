@@ -33,7 +33,7 @@ source $ZSH/oh-my-zsh.sh
 fpath=(~/.zsh_func $fpath)
 
 # xterm-256color
-if [[ $TERM == 'xterm' ]]; then
+if [ $TERM = 'xterm' ]; then
     export TERM=xterm-256color
 fi
 
@@ -91,6 +91,6 @@ function getip() {
 proxy=http://127.0.0.1:1080
 export http_proxy=$proxy
 export https_proxy=$proxy
-export no_proxy="localhost, ip.cn, chinaz.com"
+export no_proxy="localhost, 127.0.0.1, ::1, ip.cn, chinaz.com"
 # unset proxy
 alias unset_proxy='unset http_proxy https_proxy ftp_proxy no_proxy'

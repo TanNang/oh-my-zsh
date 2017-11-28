@@ -26,11 +26,11 @@ DISABLE_AUTO_UPDATE="true"      # 不进行自动更新检查（每两个星期�
 # COMPLETION_WAITING_DOTS="true"# 在等待命令补全时显示红点
 
 # 加载 oh-my-zsh.sh
-export ZSH=/root/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # function path，可使用 autoload 加载
-fpath=(/root/.zsh_func $fpath)
+fpath=(~/.zsh_func $fpath)
 
 # 修复键位冲突，如果没有此情况请注释掉！
 # key bindings
@@ -73,7 +73,7 @@ bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
 
 # xterm-256color
-if [[ $TERM == 'xterm' ]]; then
+if [ $TERM = 'xterm' ]; then
     export TERM=xterm-256color
 fi
 
@@ -161,6 +161,6 @@ function getip() {
 proxy=http://192.168.0.103:1080
 export http_proxy=$proxy
 export https_proxy=$proxy
-export no_proxy="localhost, ip.cn, chinaz.com"
+export no_proxy="localhost, 127.0.0.1, ::1, ip.cn, chinaz.com"
 # unset proxy
 alias unset_proxy='unset http_proxy https_proxy ftp_proxy no_proxy'
